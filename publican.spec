@@ -26,6 +26,7 @@ BuildRequires:	perl-Devel-Cover
 BuildRequires:	perl-Encode
 BuildRequires:	perl-File-Copy-Recursive >= 0.38
 BuildRequires:	perl-File-Find-Rule
+BuildRequires:	perl-File-Inplace
 BuildRequires:	perl-File-Which
 BuildRequires:	perl-File-pushd
 BuildRequires:	perl-HTML-Format
