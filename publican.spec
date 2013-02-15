@@ -1,20 +1,21 @@
-# TODO: common-web
+# TODO:
+# - common-web
+# - fix tests (currently they require wkhtmltopdf built with patched qt)
 #
 # Conditional build:
-%bcond_without	tests	# do not perform "./Build test"
+%bcond_with	tests	# do perform "./Build test"
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
-Version:	3.0.0
+Version:	3.1.1
 Release:	1
 License:	CC0 (Common Content files), GPL v2+ or Artistic v1.0 (the rest)
 Group:		Applications/Publishing/XML
 Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar.gz
-# Source0-md5:	a4327409d5d1152cd6849dc6ac51e76d
+# Source0-md5:	b1b81828dc6968e10928f8b68139cde5
 Patch0:		%{name}-test.patch
-Patch1:		%{name}-spec.patch
 URL:		https://fedorahosted.org/publican/
 BuildRequires:	perl-Archive-Tar
 BuildRequires:	perl-Archive-Zip
@@ -35,10 +36,12 @@ BuildRequires:	perl-HTML-FormatText-WithLinks-AndTables >= 0.02
 BuildRequires:	perl-HTML-Tree
 BuildRequires:	perl-I18N-LangTags
 BuildRequires:	perl-IO-String
+BuildRequires:	perl-List-MoreUtils
 BuildRequires:	perl-Locale-Maketext-Gettext
 BuildRequires:	perl-Locale-PO
 BuildRequires:	perl-Makefile-Parser
 BuildRequires:	perl-Module-Build
+BuildRequires:	perl-Sort-Versions
 BuildRequires:	perl-String-Similarity
 BuildRequires:	perl-Syntax-Highlight-Engine-Kate
 BuildRequires:	perl-Template-Toolkit
@@ -57,7 +60,7 @@ BuildRequires:	perl-Test-Pod >= 1.14
 BuildRequires:	perl-Test-Pod-Coverage >= 1.04
 BuildRequires:	perl-Test-Simple
 # because of WEB_TEMPLATE_PATH in publican script
-BuildRequires:	publican
+BuildRequires:	publican >= 3.1
 BuildRequires:	wkhtmltopdf
 %endif
 Requires:	docbook-style-xsl >= 1.76.1
@@ -132,7 +135,6 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 %prep
 %setup -q -n Publican-v%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__perl} Build.PL \
@@ -171,6 +173,8 @@ dir=$(pwd)
 cd datadir/Common_Content/common
 %{__perl} -CA -I $dir/blib/lib $dir/blib/script/publican install_brand --web --path=$RPM_BUILD_ROOT%{wwwdir}/common
 %endif
+
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/locale/{sr@Latn,sr@latin}
 
 %find_lang %{name}
 
