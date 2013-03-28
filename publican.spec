@@ -9,12 +9,12 @@
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
-Version:	3.1.1
+Version:	3.1.5
 Release:	1
 License:	CC0 (Common Content files), GPL v2+ or Artistic v1.0 (the rest)
 Group:		Applications/Publishing/XML
 Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar.gz
-# Source0-md5:	b1b81828dc6968e10928f8b68139cde5
+# Source0-md5:	6f235cb87a6a21e712511ead0a882352
 Patch0:		%{name}-test.patch
 URL:		https://fedorahosted.org/publican/
 BuildRequires:	perl-Archive-Tar
