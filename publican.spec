@@ -9,15 +9,15 @@
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
-Version:	3.1.5
+Version:	3.2.1
 Release:	1
 License:	CC0 (Common Content files), GPL v2+ or Artistic v1.0 (the rest)
 Group:		Applications/Publishing/XML
 Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar.gz
-# Source0-md5:	6f235cb87a6a21e712511ead0a882352
+# Source0-md5:	f703d4ff83347c55dd4d7dd0cffb7cd4
 Patch0:		%{name}-test.patch
 URL:		https://fedorahosted.org/publican/
-BuildRequires:	perl-Archive-Tar
+BuildRequires:	perl-Archive-Tar >= 1.84
 BuildRequires:	perl-Archive-Zip
 BuildRequires:	perl-Config-Simple
 BuildRequires:	perl-DBI
@@ -43,14 +43,14 @@ BuildRequires:	perl-Makefile-Parser
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-Sort-Versions
 BuildRequires:	perl-String-Similarity
-BuildRequires:	perl-Syntax-Highlight-Engine-Kate
+BuildRequires:	perl-Syntax-Highlight-Engine-Kate >= 0.07
 BuildRequires:	perl-Template-Toolkit
 BuildRequires:	perl-Term-ANSIColor
 BuildRequires:	perl-Text-CSV_XS
 BuildRequires:	perl-XML-LibXML >= 1.67
 BuildRequires:	perl-XML-LibXSLT >= 1.67
 BuildRequires:	perl-XML-Simple
-BuildRequires:	perl-XML-TreeBuilder >= 4.0
+BuildRequires:	perl-XML-TreeBuilder >= 4.2
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-version
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -64,11 +64,13 @@ BuildRequires:	publican >= 3.1
 BuildRequires:	wkhtmltopdf
 %endif
 Requires:	docbook-style-xsl >= 1.76.1
+Requires:	perl-Archive-Tar >= 1.84
 Requires:	perl-File-Copy-Recursive >= 0.38
 Requires:	perl-HTML-FormatText-WithLinks-AndTables >= 0.02
+Requires:	perl-Syntax-Highlight-Engine-Kate >= 0.07
 Requires:	perl-XML-LibXML >= 1.67
 Requires:	perl-XML-LibXSLT >= 1.67
-Requires:	perl-XML-TreeBuilder >= 4.0
+Requires:	perl-XML-TreeBuilder >= 4.2
 Requires:	wkhtmltopdf
 # to produce RPMs
 Suggests:	rpm-build
