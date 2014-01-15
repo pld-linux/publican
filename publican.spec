@@ -4,13 +4,13 @@
 #
 # Conditional build:
 %bcond_with	tests	# do perform "./Build test"
-#
+
 %include	/usr/lib/rpm/macros.perl
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
 Version:	3.2.1
-Release:	1
+Release:	2
 License:	CC0 (Common Content files), GPL v2+ or Artistic v1.0 (the rest)
 Group:		Applications/Publishing/XML
 Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar.gz
@@ -140,8 +140,9 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 
 %build
 %{__perl} Build.PL \
-	installdirs=vendor \
-	--nocolours=1
+	--nocolours=1 \
+	perl=%{__perl} \
+	installdirs=vendor
 ./Build
 
 %{?with_tests:./Build test}
