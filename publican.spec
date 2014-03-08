@@ -9,13 +9,14 @@
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
-Version:	3.2.1
-Release:	2
+Version:	4.0.0
+Release:	1
 License:	CC0 (Common Content files), GPL v2+ or Artistic v1.0 (the rest)
 Group:		Applications/Publishing/XML
 Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar.gz
-# Source0-md5:	f703d4ff83347c55dd4d7dd0cffb7cd4
+# Source0-md5:	88e6f94d8c8ae64d4f49ee7f518d16c0
 Patch0:		%{name}-test.patch
+Patch1:		%{name}-po.patch
 URL:		https://fedorahosted.org/publican/
 BuildRequires:	perl-Archive-Tar >= 1.84
 BuildRequires:	perl-Archive-Zip
@@ -36,23 +37,26 @@ BuildRequires:	perl-HTML-FormatText-WithLinks-AndTables >= 0.02
 BuildRequires:	perl-HTML-Tree
 BuildRequires:	perl-I18N-LangTags
 BuildRequires:	perl-IO-String
+BuildRequires:	perl-Lingua-EN-Fathom
 BuildRequires:	perl-List-MoreUtils
 BuildRequires:	perl-Locale-Maketext-Gettext
+BuildRequires:	perl-Locale-Maketext-Lexicon
+BuildRequires:	perl-Locale-Msgfmt
 BuildRequires:	perl-Locale-PO
 BuildRequires:	perl-Makefile-Parser
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-Sort-Versions
 BuildRequires:	perl-String-Similarity
-BuildRequires:	perl-Syntax-Highlight-Engine-Kate >= 0.07
+BuildRequires:	perl-Syntax-Highlight-Engine-Kate >= 0.08-2
 BuildRequires:	perl-Template-Toolkit
 BuildRequires:	perl-Term-ANSIColor
 BuildRequires:	perl-Text-CSV_XS
-BuildRequires:	perl-XML-LibXML >= 1.67
-BuildRequires:	perl-XML-LibXSLT >= 1.67
+BuildRequires:	perl-XML-LibXML >= 1.70
+BuildRequires:	perl-XML-LibXSLT >= 1.70
 BuildRequires:	perl-XML-Simple
-BuildRequires:	perl-XML-TreeBuilder >= 4.2
+BuildRequires:	perl-XML-TreeBuilder >= 5.1
 BuildRequires:	perl-devel >= 1:5.8.0
-BuildRequires:	perl-version
+BuildRequires:	perl-version >= 0.77
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	docbook-style-xsl >= 1.76.1
@@ -67,10 +71,11 @@ Requires:	docbook-style-xsl >= 1.76.1
 Requires:	perl-Archive-Tar >= 1.84
 Requires:	perl-File-Copy-Recursive >= 0.38
 Requires:	perl-HTML-FormatText-WithLinks-AndTables >= 0.02
-Requires:	perl-Syntax-Highlight-Engine-Kate >= 0.07
-Requires:	perl-XML-LibXML >= 1.67
-Requires:	perl-XML-LibXSLT >= 1.67
-Requires:	perl-XML-TreeBuilder >= 4.2
+Requires:	perl-Syntax-Highlight-Engine-Kate >= 0.08-2
+Requires:	perl-XML-LibXML >= 1.70
+Requires:	perl-XML-LibXSLT >= 1.70
+Requires:	perl-XML-TreeBuilder >= 5.1
+Requires:	perl-version >= 0.77
 Requires:	wkhtmltopdf
 # to produce RPMs
 Suggests:	rpm-build
@@ -137,6 +142,7 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 %prep
 %setup -q -n Publican-v%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__perl} Build.PL \
@@ -150,7 +156,7 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 # publish Users_Guide
 dir=$(pwd)
 cd Users_Guide
-%{__perl} -CA -I $dir/blib/lib $dir/blib/script/publican build \
+%{__perl} -CDAS -I $dir/blib/lib $dir/blib/script/publican build \
 	--formats=html-desktop \
 	--publish \
 	--langs=all \
