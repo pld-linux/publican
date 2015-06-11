@@ -147,6 +147,9 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 %setup -q -n Publican-v%{version}
 %patch0 -p1
 
+# just a copy of de_CH
+%{__rm} po/de-CH.po
+
 %build
 %{__perl} Build.PL \
 	--nocolours=1 \
