@@ -17,6 +17,10 @@ Source0:	https://fedorahosted.org/releases/p/u/publican/Publican-v%{version}.tar
 # Source0-md5:	95564b6559661c7c7266f17f0502ae31
 Patch0:		%{name}-test.patch
 URL:		https://fedorahosted.org/publican/
+BuildRequires:	docbook-dtd45-xml
+BuildRequires:	docbook-dtd50-xml
+BuildRequires:	docbook-style-xsl >= 1.76.1
+BuildRequires:	docbook-style-xsl-ns >= 1.76.1
 BuildRequires:	perl-Archive-Tar >= 1.84
 BuildRequires:	perl-Archive-Zip
 BuildRequires:	perl-Config-Simple
@@ -61,7 +65,6 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-version >= 0.77
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	docbook-style-xsl >= 1.76.1
 BuildRequires:	perl-Test-Pod >= 1.14
 BuildRequires:	perl-Test-Pod-Coverage >= 1.04
 BuildRequires:	perl-Test-Simple
@@ -70,6 +73,7 @@ BuildRequires:	publican >= 3.1
 BuildRequires:	wkhtmltopdf
 %endif
 Requires:	docbook-style-xsl >= 1.76.1
+Requires:	docbook-style-xsl-ns >= 1.76.1
 Requires:	perl-Archive-Tar >= 1.84
 Requires:	perl-File-Copy-Recursive >= 0.38
 Requires:	perl-HTML-FormatText-WithLinks-AndTables >= 0.02
