@@ -5,7 +5,6 @@
 # Conditional build:
 %bcond_with	tests	# do perform "./Build test"
 
-%include	/usr/lib/rpm/macros.perl
 Summary:	Publishing tool based on DocBook XML
 Summary(pl.UTF-8):	Narzędzie do publikowania, oparte na formacie Docbook XML
 Name:		publican
