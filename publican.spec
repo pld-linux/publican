@@ -148,7 +148,7 @@ Bashowe uzupełnianie parametrów dla programu Publican.
 
 %prep
 %setup -q -n Publican-v%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 # just a copy of de_CH
 %{__rm} po/de-CH.po
